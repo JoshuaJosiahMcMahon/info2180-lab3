@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var gameState = Array(cells.length).fill(null);
   var currentPlayer = 'X';
   var statusDiv = document.getElementById('status');
+  var initialStatusText = statusDiv ? statusDiv.textContent : '';
   var gameOver = false;
 
   function getWinner() {
@@ -53,5 +54,24 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.remove('hover');
       });
     })(j);
+  }
+
+  var newGameBtn = document.querySelector('.btn');
+  if (newGameBtn) {
+    newGameBtn.addEventListener('click', function() {
+      for (var m = 0; m < cells.length; m++) {
+        cells[m].textContent = '';
+        cells[m].classList.remove('X');
+        cells[m].classList.remove('O');
+        cells[m].classList.remove('hover');
+        gameState[m] = null;
+      }
+      currentPlayer = 'X';
+      gameOver = false;
+      if (statusDiv) {
+        statusDiv.textContent = initialStatusText;
+        statusDiv.classList.remove('you-won');
+      }
+    });
   }
 });
