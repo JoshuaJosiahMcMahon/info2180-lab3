@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.add(currentPlayer);
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
       });
+
+      cells[index].addEventListener('mouseover', function() {
+        this.classList.add('hover');
+      });
+
+      cells[index].addEventListener('mouseout', function() {
+        this.classList.remove('hover');
+      });
     })(j);
   }
 });
