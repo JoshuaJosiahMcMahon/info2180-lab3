@@ -5,5 +5,19 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < cells.length; i++) {
     cells[i].classList.add('square');
   }
-});
 
+  var gameState = Array(cells.length).fill(null);
+  var currentPlayer = 'X';
+
+  for (var j = 0; j < cells.length; j++) {
+    (function(index) {
+      cells[index].addEventListener('click', function() {
+        if (gameState[index] !== null) return;
+        gameState[index] = currentPlayer;
+        this.textContent = currentPlayer;
+        this.classList.add(currentPlayer);
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      });
+    })(j);
+  }
+});
